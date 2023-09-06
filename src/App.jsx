@@ -1,24 +1,40 @@
+//App
 import './App.css';
-import Card from './components/Card.jsx';
+import axios from 'axios';
 import Cards from './components/Cards.jsx';
-import SearchBar from './components/SearchBar.jsx';
-import characters, { Rick } from './data.js';
+import { useState } from 'react';
+import Nav from './components/Nav';
 
 function App() {
+
+   const [characters, setCharacters] = useState([]);
+
+   const onClose = (id) => {
+      setCharacters(characters.filter(character => character.id !== parseInt(id)))
+   }
+
+   function onSearch(id) {
+      axios(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(({ data }) => {
+         if (characters.some(character => character.id === parseInt(id))) {
+            window.alert("El personaje ya ha sido ingresado anteriormente.");
+            return;
+         }
+         if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+         } else {
+            window.alert('Ingrese un ID por favor.');
+         }
+      })
+      .catch((error) => alert("No existe ningun personaje con el ID ingresado."))
+      
+      ;
+   }
+
    return (
       <div className='App'>
-         <SearchBar onSearch={(characterID) => window.alert(characterID)} />
-         <Cards characters={characters} />
-         {/* <Card
-            id={Rick.id}
-            name={Rick.name}
-            status={Rick.status}
-            species={Rick.species}
-            gender={Rick.gender}
-            origin={Rick.origin.name}
-            image={Rick.image}
-            onClose={() => window.alert('Emulamos que se cierra la card')}
-         /> */}
+         <Nav onSearch={onSearch}/>
+         <Cards characters={characters} onClose={onClose}/>
       </div>
    );
 }
