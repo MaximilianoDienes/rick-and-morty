@@ -1,9 +1,12 @@
 //App
 import './App.css';
 import axios from 'axios';
-import Cards from './components/Cards.jsx';
+import Cards from './components/cards/Cards';
 import { useState } from 'react';
-import Nav from './components/Nav';
+import Nav from './components/nav/Nav';
+import { Routes, Route } from 'react-router-dom';
+import About from './components/about/About';
+import Detail from './components/detail/Detail';
 
 function App() {
 
@@ -13,7 +16,7 @@ function App() {
       setCharacters(characters.filter(character => character.id !== parseInt(id)))
    }
 
-   function onSearch(id) {
+   const onSearch = (id) => {
       axios(`https://rickandmortyapi.com/api/character/${id}`)
       .then(({ data }) => {
          if (characters.some(character => character.id === parseInt(id))) {
@@ -26,7 +29,7 @@ function App() {
             window.alert('Ingrese un ID por favor.');
          }
       })
-      .catch((error) => alert("No existe ningun personaje con el ID ingresado."))
+      .catch(() => alert("No existe ningun personaje con el ID ingresado."))
       
       ;
    }
@@ -34,7 +37,11 @@ function App() {
    return (
       <div className='App'>
          <Nav onSearch={onSearch}/>
-         <Cards characters={characters} onClose={onClose}/>
+         <Routes>
+         <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
+         <Route path="/about" element={<About/>}/>
+         <Route path="/detail/:id" element={<Detail/>}/>
+         </Routes>
       </div>
    );
 }

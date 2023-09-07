@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function SearchBar(props) {
+export default function SearchBar({ onSearch }) {
 
    const [id, setId] = useState("");
 
@@ -10,8 +10,9 @@ export default function SearchBar(props) {
       setId(event.target.value);
    }
 
-   const onSearchRun = () => {
-      props.onSearch(id)
+   const handleClick = () => {
+      onSearch(id);
+      setId("");
    }
 
    return (
@@ -21,7 +22,7 @@ export default function SearchBar(props) {
          onChange={handleChange}
          value={id}
          />
-         <button onClick={onSearchRun}>Agregar</button>
+         <button onClick={handleClick}>Agregar</button>
       </div>
    );
 
