@@ -2,15 +2,35 @@
 import './App.css';
 import axios from 'axios';
 import Cards from './components/cards/Cards';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Nav from './components/nav/Nav';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import About from './components/about/About';
 import Detail from './components/detail/Detail';
+import Form from './components/form/Form';
+import Favorites from './components/favorites/Favorites';
 
 function App() {
 
+   const navigate = useNavigate();
+
+   const location = useLocation().pathname;
+
+   const isSlash = (location === "/")
+
    const [characters, setCharacters] = useState([]);
+
+   const EMAIL = "maxdienes@gmail.com"
+   const PASSWORD = "password12"
+
+   // const [EMAIL, setEMAIL] = useState();
+
+   // const [PASSWORD, setPASSWORD] = useState();
+
+   // const handleChangeOnForm = (userData) => {
+   //    setEMAIL(userData.email);
+   //    setPASSWORD(userData.password);
+   // }
 
    const onClose = (id) => {
       setCharacters(characters.filter(character => character.id !== parseInt(id)))
@@ -34,13 +54,34 @@ function App() {
       ;
    }
 
+   const [access, setAccess] = useState(false);
+
+   const logIn = (userData) => {
+      if (userData.password === PASSWORD && userData.email === EMAIL) {
+         setAccess(true);
+         navigate("/home");
+      }
+      else alert("Los datos son inválidos, porfavor verifique la información ingresada.")
+   }
+
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
+
+   const logOut = () => {
+      setAccess(false);
+      alert("Fuiste desloggeado exitosamente.")
+   }
+
    return (
       <div className='App'>
-         <Nav onSearch={onSearch}/>
+         {isSlash ? null : <Nav onSearch={onSearch} logOut={logOut}/>}
          <Routes>
+         <Route path="/favorites" element={<Favorites/>}/>
          <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
          <Route path="/about" element={<About/>}/>
          <Route path="/detail/:id" element={<Detail/>}/>
+         <Route path="/" element={<Form logIn={logIn}/>}/>
          </Routes>
       </div>
    );
