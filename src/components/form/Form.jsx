@@ -33,17 +33,20 @@ export default function Form ({ logIn }) {
 
     return (
         <form>
-            <label>Email:</label>
+            <div className="form">
+            <label className="label">Email:</label>
             <input name="email" value={userData.email} onChange={handleChange} className={errors.email && "warning"}/>
             <p className="danger">{errors.email ? errors.email : null}</p>
             <br/>
+            </div>
 
-            <label>Password:</label>
+            <div className="form">
+            <label className="label">Password:</label>
             <input type="password" name="password" value={userData.password} onChange={handleChange} className={errors.password && "warning"}/>
             <p className="danger">{errors.password ? errors.password : null}</p>
             <br/>
-
             <button type="submit" onClick={handleSubmit}>Submit</button>
+            </div>
         </form>
     )
 }

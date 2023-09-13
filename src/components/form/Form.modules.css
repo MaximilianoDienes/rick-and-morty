@@ -9,3 +9,14 @@
     margin-left: 10em;
   }
   
+  .label {
+    font-size: 20px; /* Adjust the width as needed */
+    background-color: whitesmoke;
+    border-radius: 5%;
+    padding: 3px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
