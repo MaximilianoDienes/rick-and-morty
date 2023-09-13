@@ -1,4 +1,18 @@
-import { ADD_FAV, REMOVE_FAV } from "./types"
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./types"
+
+const filterCards = (gender) => {
+    return {
+        type: FILTER,
+        payload: gender
+    }
+}
+
+const orderCards = (orden) => {
+    return {
+        type: ORDER,
+        payload: orden
+    }
+}
 
 const addFav = (personaje) => {
     return {
@@ -16,5 +30,7 @@ const removeFav = (id) => {
 
 export {
     addFav,
-    removeFav
+    removeFav,
+    filterCards,
+    orderCards
 }
