@@ -33,7 +33,7 @@ function App() {
    // }
 
    const onClose = (id) => {
-      setCharacters(characters.filter(character => character.id !== parseInt(id)))
+      setCharacters(characters.filter(character => character.id !== id))
    }
 
    const onSearch = (id) => {
@@ -56,12 +56,14 @@ function App() {
 
    const [access, setAccess] = useState(false);
 
-   const logIn = (userData) => {
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
-         setAccess(true);
-         navigate("/home");
-      }
-      else alert("Los datos son inválidos, porfavor verifique la información ingresada.")
+   function logIn(userData) {
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      });
    }
 
    useEffect(() => {

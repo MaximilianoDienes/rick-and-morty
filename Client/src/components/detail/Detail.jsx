@@ -19,8 +19,6 @@ export default function Detail() {
         return setCharacter({});
      }, [id]);
 
-    console.log(character)
-
     if (character.name) return (
         <div>
             <h1>{character.name}</h1>

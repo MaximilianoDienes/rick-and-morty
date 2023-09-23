@@ -14,12 +14,8 @@ const compareByIdDesc = (a, b) => {
 
 const reducer = (state = initialState, {type, payload}) => {
     switch(type) {        
-        case ADD_FAV:
-            return {
-                ...state,
-                myFavorites: [...state.allCharacters, payload],
-                allCharacters: [...state.allCharacters, payload]
-        }
+        case 'ADD_FAV':
+      return { ...state, myFavorites: payload, allCharacters: payload };
 
         case FILTER:
             if (payload === "All") return {
@@ -50,13 +46,8 @@ const reducer = (state = initialState, {type, payload}) => {
                 }
             }
         
-        case REMOVE_FAV:
-            let listWithoutFavorite = [...state.myFavorites].filter(
-                (personaje) => personaje.id !== Number(payload))
-            return {
-                ...state,
-                myFavorites: listWithoutFavorite
-        }
+        case 'REMOVE_FAV':
+            return { ...state, myFavorites: payload };
 
         default:
             return {

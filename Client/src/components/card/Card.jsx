@@ -8,8 +8,6 @@ import { useState, useEffect } from "react";
 
 export function Card(props) {
 
-   console.log(props);
-
    useEffect(() => {
       props.myFavorites.forEach((fav) => {
          if (fav.id === props.id) {
@@ -40,7 +38,7 @@ export function Card(props) {
             : (<button onClick={handleFavorite}>🤍</button>)
          }
 
-         <button onClick={() => props.onClose(props.id)}>X</button>
+         <button onClick={() => {props.onClose(props.id)}}>X</button>
          <Link to={`/detail/${props.id}`}>
          <h2>{props.name}</h2>
          </Link>
