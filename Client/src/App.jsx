@@ -20,8 +20,8 @@ function App() {
 
    const [characters, setCharacters] = useState([]);
 
-   const EMAIL = "maxdienes@gmail.com"
-   const PASSWORD = "password12"
+   // const EMAIL = "maxdienes@gmail.com"
+   // const PASSWORD = "password12"
 
    // const [EMAIL, setEMAIL] = useState();
 
@@ -36,34 +36,37 @@ function App() {
       setCharacters(characters.filter(character => character.id !== id))
    }
 
-   const onSearch = (id) => {
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-         if (characters.some(character => character.id === parseInt(id))) {
-            window.alert("El personaje ya ha sido ingresado anteriormente.");
+   const onSearch = async (id) => {
+      try {
+         const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+         if (characters.some(character => character.id === data.id)) {
+            alert("El personaje ya ha sido ingresado anteriormente.");
             return;
          }
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
          } else {
-            window.alert('Ingrese un ID por favor.');
+            alert('Ingrese un ID por favor.');
          }
-      })
-      .catch(() => alert("No existe ningun personaje con el ID ingresado."))
-      
-      ;
+      } catch (error) {
+         alert("No existe ningun personaje con el ID ingresado.")
+      }
    }
 
    const [access, setAccess] = useState(false);
 
-   function logIn(userData) {
+   async function logIn (userData) {
       const { email, password } = userData;
       const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+
+      try {
+         const { data } = await axios(URL + `?email=${email}&password=${password}`)
          const { access } = data;
          setAccess(data);
          access && navigate('/home');
-      });
+      } catch (error) {
+         console.log(error.message);
+      }
    }
 
    useEffect(() => {

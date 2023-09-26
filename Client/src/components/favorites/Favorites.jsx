@@ -5,9 +5,9 @@ import { useState } from "react";
 
 export const Favorites = (props) => {
 
-    const [aux, setAux] = useState(false)
+    const [aux, setAux] = useState(false);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleOrder = (event) => {
         dispatch(orderCards(event.target.value));
