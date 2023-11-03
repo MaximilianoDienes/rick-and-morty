@@ -1,35 +1,44 @@
-nav {
-    flex: 0 0 200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000000;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-  
-  .left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .center {
-    display: flex;
-    align-items: center;
-  }
-  
-  button {
-    margin-right: 10px;
-    background-color: transparent;
-    color: black;
-    border: none;
-    cursor: pointer;
-  }
+.nav {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: row;
+  background-color: #000000;
+  justify-content: space-between;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
 
-  .left button {
-    margin-left: 10px;
-  }
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+button {
+  margin-right: 8px;
+  margin-left: 8px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+}

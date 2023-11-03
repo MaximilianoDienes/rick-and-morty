@@ -19,24 +19,26 @@ export default function Nav({onSearch, logOut}) {
     }
 
     return (
-            <nav>
+            <nav className={styles.nav}>
                 <div className={styles.left}>
-                <SearchBar onSearch={onSearch}/>
+                <SearchBar onSearch={onSearch} className={styles.input}/>
                 <button onClick={randomSearch}>Random</button>
-                <button onClick={() => navigate("/favorites")}>Favorites</button>
                 </div>
                 
                 <div className={styles.center}>
-                <NavLink to={"/about"}>
-                <button>About</button>
-                </NavLink>
-                
+                <button onClick={() => navigate("/favorites")}>Favorites</button>
                 <NavLink to={"/home"}>
                 <button>Home</button>
                 </NavLink>
 
+                <NavLink to={"/about"}>
+                <button>About</button>
+                </NavLink>
+                </div>
+
+                <div className={styles.right}>
                 <NavLink to={"/"}>
-                    <button onClick={handleLogOut}>Log Out</button>
+                <button onClick={handleLogOut}>Log Out</button>
                 </NavLink>
                 </div>
             </nav>

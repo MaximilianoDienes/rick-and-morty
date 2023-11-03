@@ -11,7 +11,6 @@
   
   .label {
     font-size: 20px; /* Adjust the width as needed */
-    background-color: whitesmoke;
     border-radius: 5%;
     padding: 3px;
     font-weight: bold;
@@ -20,9 +19,12 @@
   .form {
     display: flex;
     flex-direction: column;
-    background-color: whitesmoke;
     padding: 50px;
     border-radius: 5%;
+    background-color: rgb(255, 245, 245);
+    margin: 20px;
+    border: 4px solid black;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   }
 
   .button {

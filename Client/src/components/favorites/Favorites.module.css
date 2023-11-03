@@ -1,0 +1,42 @@
+/* .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+.select {
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+} */
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }  
+  
+  .select {
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .content {
+    margin-top: 100px;
+}
+  
+
+  

@@ -34,8 +34,8 @@ export function Card(props) {
    return (
       <div className = {styles.container}>
          {
-            isFav ? (<button onClick={handleFavorite}>❤️</button>) 
-            : (<button onClick={handleFavorite}>🤍</button>)
+            isFav ? (<button onClick={handleFavorite} className={styles.heartButton}>❤️</button>) 
+            : (<button onClick={handleFavorite} className={styles.heartButton}>🤍</button>)
          }
 
          <button onClick={() => {props.onClose(props.id)}}>X</button>
